@@ -19,7 +19,10 @@ body:
         - Beta
         - Debug Helper
         - VaultPress
+        - Other
       multiple: true
+    validations:
+      required: true
   - type: textarea
     id: steps
     attributes:
