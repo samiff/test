@@ -21,7 +21,6 @@ body:
         - VaultPress
         - Other/None
       multiple: true
-
   - type: textarea
     id: steps
     attributes:
