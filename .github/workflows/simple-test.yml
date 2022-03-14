@@ -8,7 +8,7 @@ jobs: # A workflow consists of one or more jobs.
     steps: # Steps/tasks to complete in the job.
       - name: Echo out date # A name for the step to display on GitHub.
         run: "echo Current system date: $( date )" # Run command-line programs using runner's shell.
-      # - name: Multiline commands
-      #   - run: |
-      #     node -v
-      #     npm -v
+      - name: Multiline commands
+        - run: |
+          node -v
+          npm -v
