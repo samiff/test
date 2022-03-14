@@ -3,12 +3,17 @@ name: Simple Shell Commands Test # Workflow name.
 on: [ push ] # The name(s) of the GitHub event that triggers the workflow.
 
 jobs: # A workflow consists of one or more jobs.
-  run-shell-command: # The custom name of a job.
+  echo-date: # The custom name of a job.
     runs-on: ubuntu-latest # The type of machine to run the job on.
     steps: # Steps/tasks to complete in the job.
       - name: Echo out date # A name for the step to display on GitHub.
         run: "echo Current system date $( date )" # Run command-line programs using runner's shell.
-      - name: Multiline commands
-        - run: |
-          node -v
-          npm -v
+  echo-versions:
+    runs-on: ubuntu-latest
+    steps:  
+      - name: Echo git version
+        run: git --version
+      # - name: Echo version multiline with pipe
+      #   - run: |
+      #     node -v
+      #     npm -v
