@@ -25,3 +25,11 @@ jobs: # A workflow consists of one or more jobs.
           import platform
           print( platform.processor() )
         shell: python # Inform GH to use python for run command.
+  windows-commands:
+    runs-on: windows-latest # Job will run on Windows platform in parallel.
+    steps:
+      - name: PowerShell print current dir
+        run: Get-Location
+      - name: bash on Windows print current dir
+        run: pwd
+        shell: bash # Powershell is default for Windows, so need to specify bash here.
