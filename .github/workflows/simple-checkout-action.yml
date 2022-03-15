@@ -1,0 +1,15 @@
+name: Simple Checkout Action Test
+
+on: [ push ]
+
+jobs:
+  checkout-and-list-repo-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo files
+        uses: actions/checkout@v3.0.0
+      - name: List files
+        run: |
+          echo pwd: $( pwd )
+          echo "Listing files:\n"
+          ls -al
