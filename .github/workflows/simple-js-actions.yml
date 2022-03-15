@@ -1,0 +1,17 @@
+name: Simple JS Actions Test
+
+on: [ push ]
+
+jobs:
+  run-github-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remote JS Action
+        id: greet # Used below in the `steps.greet`.
+        uses: actions/hello-world-javascript-action@ad41a6c27317e688719c813b0d6a25685a9bce54 # Reference to an action. Can @ releases, branches, commits, etc.
+        # https://github.com/actions/hello-world-javascript-action
+        # Could also reference locally written actions in the repo.
+        with:
+          who-to-greet: Samiff # An input to the action.
+      - name: Log the "Remote JS Action" greeting time output
+        run: echo "${{ steps.greet.outputs.time }}" # `time` is an output set by the action.
