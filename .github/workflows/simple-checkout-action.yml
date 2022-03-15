@@ -17,6 +17,7 @@ jobs:
 
       - name: List some default env vars
         run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE
+          echo "Commit sha: $GITHUB_SHA"
+          echo "Repo: $GITHUB_REPOSITORY"
+          echo "Workspace: $GITHUB_WORKSPACE"
+        # There is also the `github` object with stuff like the auth token on tt.
