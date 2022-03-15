@@ -13,7 +13,7 @@ jobs: # A workflow consists of one or more jobs.
     steps:  
       - name: Echo git version
         run: git --version
-      # - name: Echo version multiline with pipe
-      #   - run: |
-      #     node -v
-      #     npm -v
+      - name: Echo node/npm versions multiline with pipe
+        run: |
+          node -v
+          npm -v
