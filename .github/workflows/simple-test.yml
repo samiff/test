@@ -17,3 +17,11 @@ jobs: # A workflow consists of one or more jobs.
         run: |
           node -v
           npm -v
+  python-commands: # bash is default shell, but can also process commands with python for example.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python print platform cpu
+        run: |
+          import platform
+          print( platform.processor() )
+        shell: python # Inform GH to use python for run command.
