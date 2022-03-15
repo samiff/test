@@ -8,8 +8,15 @@ jobs:
     steps:
       - name: Checkout repo files
         uses: actions/checkout@v3.0.0
+     
       - name: List files
         run: |
           echo pwd: $( pwd )
-          echo "Listing files:\n"
+          echo "Listing files:"
           ls -al
+
+      - name: List some default env vars
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+          echo $GITHUB_WORKSPACE
