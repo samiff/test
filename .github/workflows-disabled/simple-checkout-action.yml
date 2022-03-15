@@ -15,7 +15,7 @@ jobs:
           echo "Listing files:"
           ls -al
 
-      - name: List some default env vars
+      - name: Echo out some default env vars
         run: |
           echo "Commit sha: $GITHUB_SHA"
           echo "Repo: $GITHUB_REPOSITORY"
