@@ -1,0 +1,14 @@
+name: Simple repository_dispatch Event Test
+
+on:
+  repository_dispatch:
+    types: [ myCustomEventType ]
+
+jobs:
+  echo-payload-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo myCustomEventType payload
+        run: |
+          echo Event payload:
+          echo ${{ github.event.payload }}
