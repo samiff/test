@@ -12,4 +12,4 @@ jobs:
       - name: Echo myCustomEventType payload
         run: |
           echo Event payload:
-          echo ${{ github.event.client_payload }}
+          echo ${{ github.event.client_payload.customPayloadKey }}
