@@ -1,8 +1,9 @@
 name: Simple repository_dispatch Event Test
+# See: https://docs.github.com/en/rest/reference/repos#create-a-repository-dispatch-event
 
 on:
   repository_dispatch:
-    types: [ myCustomEventType ]
+    types: [ myCustomEventType ] # Limit to specific custom event types.
 
 jobs:
   echo-payload-data:
@@ -11,4 +12,4 @@ jobs:
       - name: Echo myCustomEventType payload
         run: |
           echo Event payload:
-          echo ${{ github.event.payload }}
+          echo ${{ github.event.client_payload }}
