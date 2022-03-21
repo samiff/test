@@ -7,7 +7,7 @@ on: [ push ]
 
 env:
   ENV_VAR_1: red # Workflow level scoping.
-  ENCRYPTED_FAKE_SECRET: ${{ secrets.fake-secret }} # Secret added via the repo settings.
+  ENCRYPTED_FAKE_SECRET: ${{ secrets.ENCRYPTED_FAKE_SECRET }} # Secret added via the repo settings.
 
 jobs:
   job-1:
