@@ -1,0 +1,40 @@
+name: Simple Environment Variables Test
+
+# See: https://docs.github.com/en/actions/learn-github-actions/environment-variables
+# https://docs.github.com/en/actions/security-guides/encrypted-secrets
+
+on: [ push ]
+
+env:
+  ENV_VAR_1: red # Workflow level scoping.
+  ENCRYPTED_FAKE_SECRET: ${{ secrets.fake-secret }} # Secret added via the repo settings.
+
+jobs:
+  job-1:
+    runs-on: ubuntu-latest
+    env:
+      ENV_VAR_2: blue # Job level scoping, won't be accessible inside of job-2.
+    steps:
+      - name: job-1_step-1
+        env:
+          ENV_VAR_3: green # Step level scoping, won't be accessible from job-1_step-2.
+        run: |
+          echo "ENV_VAR_1: $ENV_VAR_1"
+          echo "ENV_VAR_2: $ENV_VAR_2"
+          echo "ENV_VAR_3: $ENV_VAR_3"
+          echo "ENCRYPTED_FAKE_SECRET: $ENCRYPTED_FAKE_SECRET"
+      - name: job-1_step-2
+        run: |
+          echo "ENV_VAR_1: $ENV_VAR_1"
+          echo "ENV_VAR_2: $ENV_VAR_2"
+          echo "ENV_VAR_3: $ENV_VAR_3"
+          echo "ENCRYPTED_FAKE_SECRET: $ENCRYPTED_FAKE_SECRET"
+  job-2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: job-2_step-1
+        run: |
+          echo "ENV_VAR_1: $ENV_VAR_1"
+          echo "ENV_VAR_2: $ENV_VAR_2"
+          echo "ENV_VAR_3: $ENV_VAR_3"
+          echo "ENCRYPTED_FAKE_SECRET: $ENCRYPTED_FAKE_SECRET"
