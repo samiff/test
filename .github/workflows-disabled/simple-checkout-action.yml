@@ -20,4 +20,4 @@ jobs:
           echo "Commit sha: $GITHUB_SHA"
           echo "Repo: $GITHUB_REPOSITORY"
           echo "Workspace: $GITHUB_WORKSPACE"
-        # There is also the `github` object with stuff like the auth token on tt.
+        # There is also the `github` object with stuff like the auth token on it.
