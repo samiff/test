@@ -1,0 +1,25 @@
+name: Simple Matrix Test
+
+# See: https://github.com/actions/setup-node for:
+# - Optionally downloading and caching distribution of the requested Node.js version, and adding it to the PATH
+# - Optionally caching npm/yarn/pnpm dependencies
+# - Registering problem matchers for error output
+# - Configuring authentication for GPR or npm
+
+on: push
+
+jobs:
+  check-and-swap-node-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log the default node.js version
+        run: node -v
+
+      - name: Swap the node.js version and log it
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a
+        with:
+          node-version: lts/erbium
+        run: |
+          echo "Post setup-node version:"
+          node -v
+
