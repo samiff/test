@@ -3,11 +3,15 @@ name: Simple Status Check (if conditional) Test
 # See: https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
 #      https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idif
 
+# continue-on-error: Prevents a job from failing when a step fails. Set to true to allow a job to pass when this step fails.
+# See: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepscontinue-on-error
+
 on: [ push, pull_request ]
 
 jobs:
   job-one:
     runs-on: ubuntu-latest
+    timeout-minutes: 360 # Can be added to step/job, and default is 360 minutes. If a job takes longer, it will be canceled.
     steps:
       - name: step1
         run: echo "step1 should run."
