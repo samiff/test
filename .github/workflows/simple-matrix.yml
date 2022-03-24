@@ -15,11 +15,12 @@ jobs:
       - name: Log the default node.js version
         run: node -v
 
-      - name: Swap the node.js version and log it
+      - name: Swap the node.js version
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a
         with:
           node-version: lts/erbium
+      
+      - name: Log the swapped node.js version
         run: |
           echo "Post setup-node version:"
           node -v
-
