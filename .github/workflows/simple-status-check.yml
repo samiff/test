@@ -1,0 +1,38 @@
+name: Simple Status Check (if conditional) Test
+
+# See: https://docs.github.com/en/actions/learn-github-actions/expressions#status-check-functions
+#      https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idif
+
+on: [ push, pull_request ]
+
+jobs:
+  job-one:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step1
+        run: echo "step1 should run."
+
+      - name: step2
+        run: eccho "step2 should fail."
+
+      - name: step3
+        if: failure() # Equivalent: job.status == 'failure'
+        run: echo "step3 should run if step2 fails."
+
+      - name: step4
+        run: eccho "step 4 should fail."
+
+      - name: step5
+        if: always()
+        run: "step5 should always run."
+
+      - name: step6
+        if: job.status == 'success'
+        run: echo "step6 should fail since there were previous failed steps."
+
+  job-two:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: on-pull-request
+        run: echo "this job-two step should only run for pull_request and not push events."
