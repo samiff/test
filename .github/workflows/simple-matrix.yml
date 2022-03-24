@@ -1,5 +1,10 @@
 name: Simple Matrix Test
 
+# Using a build matrix for your jobs: https://docs.github.com/en/actions/using-jobs/using-a-build-matrix-for-your-jobs
+# A matrix allows you to create multiple jobs by performing variable substitution in a single job definition.
+# For example, you can use a matrix to create jobs for more than one supported version of a programming language,
+# operating system, or tool. A matrix reuses the job's configuration and creates a job for each matrix you configure.
+
 # See: https://github.com/actions/setup-node for:
 # - Optionally downloading and caching distribution of the requested Node.js version, and adding it to the PATH
 # - Optionally caching npm/yarn/pnpm dependencies
@@ -10,7 +15,15 @@ on: push
 
 jobs:
   check-and-swap-node-version:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [ lts/erbium, 14.19.1 ] # Custom matrix variables we can use in workflow below.
+        os_version: [ macos-latest, windows-latest ] # Test each node version on each os.
+      fail-fast: true # When set to true, GitHub cancels all in-progress jobs if any matrix job fails. Default: true
+      # max-parallel: 0 # The maximum number of jobs that can run simultaneously when using a matrix job strategy. By default, GitHub will maximize the number of jobs run in parallel depending on the available runners on GitHub-hosted virtual machines.
+
+    runs-on: ${{ matrix.os }}
+
     steps:
       - name: Log the default node.js version
         run: node -v
@@ -18,7 +31,7 @@ jobs:
       - name: Swap the node.js version
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a
         with:
-          node-version: lts/erbium
+          node-version: ${{ matrix.node_version }}
       
       - name: Log the swapped node.js version
         run: |
