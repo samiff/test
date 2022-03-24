@@ -24,7 +24,7 @@ jobs:
 
       - name: step5
         if: always()
-        run: "step5 should always run."
+        run: echo "step5 should always run."
 
       - name: step6
         if: job.status == 'success'
