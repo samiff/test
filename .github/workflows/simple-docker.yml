@@ -1,0 +1,16 @@
+name: Simple Docker Test
+
+# See: https://docs.github.com/en/actions/using-jobs/running-jobs-in-a-container
+
+on: push
+
+jobs:
+  node-docker:
+    runs-on: ubuntu-latest
+    container: node:17.8-alpine3.14 # https://hub.docker.com/_/node
+    
+    steps:
+      - name: Log node/system info
+        run: |
+          node -v
+          cat /etc/os-release
