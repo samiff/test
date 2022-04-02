@@ -18,6 +18,5 @@ jobs:
     steps:
       - name: Echo some data
         run: |
-          echo "Testing..."
-          echo "job: ${{ github.job }}"
-          echo "PR Number: $PR_NUM"
+          echo "Testing:"
+          echo "${{ toJson( github.event ) }}"
