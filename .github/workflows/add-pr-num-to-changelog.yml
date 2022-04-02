@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Echo some data
         run: |
-          echo "github.event: "
+          echo "github event: "
           echo "${{ toJson( github.event ) }}"
   # add-pr-num:
   #   runs-on: ubuntu-latest
