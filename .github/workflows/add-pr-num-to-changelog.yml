@@ -7,7 +7,7 @@ on:
     #   - "main"
     paths:
       - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
-      - "!projects/*/*/changelog/.gitkeep"
+      # - "!projects/*/*/changelog/.gitkeep"
 
 jobs:
   echo-test:
