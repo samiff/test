@@ -1,0 +1,19 @@
+name: Add PR Number To Changelog Files
+
+on:
+  push:
+    branches-ignore:
+      - "main"
+    paths:
+      - "projects/**/changelog/!.gitkeep"
+
+jobs:
+  echo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo some data
+        run: |
+          echo "Testing..."
+          echo "job: ${{ github.job }}"
+          echo "Event data:"
+          echo "${{ github.event }}"
