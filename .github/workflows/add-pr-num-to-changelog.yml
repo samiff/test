@@ -18,5 +18,5 @@ jobs:
     steps:
       - name: Echo some data
         run: |
-          echo "Testing:"
+          echo "Testing: "
           echo "${{ toJson( github.event ) }}"
