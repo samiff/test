@@ -5,7 +5,7 @@ on:
     branches-ignore:
       - "main"
     paths:
-      - "projects/**/changelog/!.gitkeep"
+      - "projects/**/changelog/*"
 
 jobs:
   echo-test:
