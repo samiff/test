@@ -2,10 +2,9 @@ name: Add PR Number To Changelog Files
 
 on:
   push:
-    branches-ignore:
-      - "main"
+    branches: [ main ]
     paths:
-      - "projects/**/changelog/*"
+      - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
   echo-test:
@@ -13,7 +12,16 @@ jobs:
     steps:
       - name: Echo some data
         run: |
-          echo "Testing..."
-          echo "job: ${{ github.job }}"
-          echo "Event data:"
-          echo "${{ github.event }}"
+          echo "github.event: "
+          echo "${{ toJson( github.event ) }}"
+  # add-pr-num:
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     PR_NUM: ${{ github.event.number }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #       with:
+  #         fetch-depth: 0
+
+  #     - name: List files
+  #       run: echo Listing post-checkout files && ls -al
