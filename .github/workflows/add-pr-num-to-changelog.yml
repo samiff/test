@@ -3,8 +3,8 @@ name: Add PR Number To Changelog Files
 on:
   pull_request:
     types: [ opened, synchronize ]
-    # branches-ignore:
-    #   - "main"
+    branches-ignore:
+      - "main"
     # paths:
     #   - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
       # - "!projects/*/*/changelog/.gitkeep"
