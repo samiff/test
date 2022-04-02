@@ -5,16 +5,17 @@ on:
     branches-ignore:
       - "main"
     paths:
-      - "projects/**/changelog/*"
-      - "!projects/**/changelog/.gitkeep"
+      - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
+      - "!projects/*/*/changelog/.gitkeep"
 
 jobs:
   echo-test:
     runs-on: ubuntu-latest
+    env:
+      PR_NUM: ${{ github.event.number }}
     steps:
       - name: Echo some data
         run: |
           echo "Testing..."
           echo "job: ${{ github.job }}"
-          echo "Event data:"
-          echo "${{ github.event }}"
+          echo "PR Number: $PR_NUM"
