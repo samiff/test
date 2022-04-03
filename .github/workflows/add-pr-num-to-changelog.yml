@@ -1,8 +1,8 @@
 name: Add PR number to changelogs
 
 on:
-  pull_request_review:
-    types: [ submitted ]
+  pull_request:
+    types: [ review_requested ]
     # paths:
     #   - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
 
@@ -15,13 +15,12 @@ jobs:
   #         echo "github event: "
   #         echo "${{ toJson( github.event ) }}"
   add-pr-num:
-    # name: Add PR number to changelogs
-    if: github.event.review.state == 'approved'
+    name: Add PR number to changelogs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+      # - uses: actions/checkout@v3
+      #   with:
+      #     fetch-depth: 0
 
       # - name: Get pull request number
       #   id: pr
@@ -34,10 +33,10 @@ jobs:
           echo "github event: "
           echo "${{ toJson( github.event ) }}"
 
-      - name: Get changed files
-        run: |
-          echo Changed files:
-          echo $( git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} )
+      # - name: Get changed files
+      #   run: |
+      #     echo Changed files:
+      #     echo $( git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} )
 
 
 
