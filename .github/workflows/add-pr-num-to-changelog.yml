@@ -2,7 +2,7 @@ name: Add PR number to changelogs
 
 on:
   pull_request:
-    types: [ review_requested ]
+    types: [ opened, synchronize ]
     # paths:
     #   - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
 
