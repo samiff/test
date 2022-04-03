@@ -1,4 +1,4 @@
-name: Add PR Number To Changelog Files
+name: Add PR number to changelogs
 
 on:
   push:
@@ -7,21 +7,27 @@ on:
       - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
-  echo-test:
+  # echo-test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Echo some data
+  #       run: |
+  #         echo "github event: "
+  #         echo "${{ toJson( github.event ) }}"
+  add-pr-num:
+    name: Add PR number to changelogs
     runs-on: ubuntu-latest
     steps:
-      - name: Echo some data
-        run: |
-          echo "github event: "
-          echo "${{ toJson( github.event ) }}"
-  # add-pr-num:
-  #   runs-on: ubuntu-latest
-  #   env:
-  #     PR_NUM: ${{ github.event.number }}
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-  #     - name: List files
-  #       run: echo Listing post-checkout files && ls -al
+      - name: Get pull request number
+        id: pr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "::set-output name=PR_NUM::$( gh pr view --json number -q .number || echo "" )"
+        
+      - name: Echo pull request number
+        run: |
+          echo "PR Number: ${{ steps.pr.outputs.PR_NUM }}"
