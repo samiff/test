@@ -26,7 +26,7 @@ jobs:
         id: pr
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "::set-output name=PR_NUM::$( gh pr view --json number -q .number || echo "" )"
+        run: echo "::set-output name=PR_NUM::$( gh pr view --json number --jq .number || echo "" )"
         
       - name: Echo pull request number
         run: |
