@@ -15,7 +15,7 @@ jobs:
   #         echo "github event: "
   #         echo "${{ toJson( github.event ) }}"
   add-pr-num:
-    name: Add PR number to changelogs
+    # name: Add PR number to changelogs
     if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
