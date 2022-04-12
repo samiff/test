@@ -3,8 +3,8 @@ name: Add PR number to changelogs
 on:
   pull_request:
     types: [ opened, synchronize ]
-    # paths:
-    #   - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
+    paths:
+      - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
   add-pr-num:
