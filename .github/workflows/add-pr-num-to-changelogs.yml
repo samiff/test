@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [ opened, synchronize ]
     paths:
-      - "projects/*/package-red/changelog/**" # projects/<project-type>/<project>/changelog/<changelog-files>
+      - "projects/*/package-blue/changelog/**" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
   add-pr-num:
