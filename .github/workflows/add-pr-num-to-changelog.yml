@@ -1,74 +1,21 @@
 name: Add PR number to changelogs
 
 on:
-  pull_request_review:
-    types: [ submitted ]
+  pull_request:
+    types: [ opened, synchronize ]
     # paths:
     #   - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
-  # echo-test:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Echo some data
-  #       run: |
-  #         echo "github event: "
-  #         echo "${{ toJson( github.event ) }}"
   add-pr-num:
-    # name: Add PR number to changelogs
-    if: github.event.review.state == 'approved'
+    name: Add PR number to changelogs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        # with:
-        #   fetch-depth: 0
-
-      # - name: Get pull request number
-      #   id: pr
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   run: echo "::set-output name=PR_NUM::$( gh pr view --json number --jq .number || echo "" )"
+      #   with:
+      #     fetch-depth: 0
         
       - name: Echo event data
         run: |
           echo "github event: "
           echo "${{ toJson( github.event ) }}"
-
-      - name: Get changed files
-        run: |
-          echo Changed files:
-          echo git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Old attempt using gh cli to grab PR num on `push`,
-# but in this fashion will only grab PR num for current branch.
-  # add-pr-num:
-  #   name: Add PR number to changelogs
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         fetch-depth: 0
-
-  #     - name: Get pull request number
-  #       id: pr
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       run: echo "::set-output name=PR_NUM::$( gh pr view --json number --jq .number || echo "" )"
-        
-  #     - name: Echo pull request number
-  #       run: |
-  #         echo "PR Number: ${{ steps.pr.outputs.PR_NUM }}"
