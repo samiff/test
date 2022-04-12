@@ -22,7 +22,6 @@ jobs:
 
       - name: Debug, echo some data
         run: |
-          echo "changed:"
-          echo ${{ steps.filter.outputs.any_files }}
+          echo "Changed Files: ${{ steps.filter.outputs.any_files }}"
           echo "github.event.number: ${{ github.event.number }}"
           echo ""
