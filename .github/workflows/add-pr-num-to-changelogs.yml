@@ -17,14 +17,11 @@ jobs:
         with:
           list-files: shell
           filters: |
-            any:
-              - added|modified: '**'
             changelog:
               - added|modified: 'projects/*/*/changelog/**'
 
       - name: Debug, echo some data
         # if: ${{ steps.filter.outputs.changelog == 'true' }}
         run: |
-          echo "any Files: ${{ steps.filter.outputs.any_files }}"
           echo "changelog Files: ${{ steps.filter.outputs.changelog_files }}"
           echo "github.event.number: ${{ github.event.number }}"
