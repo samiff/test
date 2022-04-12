@@ -1,4 +1,3 @@
 L1: line one
 L2: line two
 L3: line three
-L4: line four
