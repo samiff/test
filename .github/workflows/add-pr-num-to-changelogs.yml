@@ -18,7 +18,7 @@ jobs:
           list-files: shell
           filters: |
             any:
-              - added|modified: '*'
+              - added|modified: '**'
 
       - name: Debug, echo some data
         run: |
