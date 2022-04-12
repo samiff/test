@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [ opened, synchronize ]
     paths:
-      - "projects/*/*/changelog/*" # projects/<project-type>/<project>/changelog/<changelog-files>
+      - "projects/*/*/changelog/**" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
   add-pr-num:
@@ -24,4 +24,3 @@ jobs:
         run: |
           echo "Changed Files: ${{ steps.filter.outputs.any_files }}"
           echo "github.event.number: ${{ github.event.number }}"
-          echo ""
