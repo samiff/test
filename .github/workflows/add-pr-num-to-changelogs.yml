@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [ opened, synchronize ]
     paths:
-      - "projects/*/*/changelog/**" # projects/<project-type>/<project>/changelog/<changelog-files>
+      - "projects/*/package-red/changelog/**" # projects/<project-type>/<project>/changelog/<changelog-files>
 
 jobs:
   add-pr-num:
@@ -23,6 +23,7 @@ jobs:
               - added|modified: 'projects/*/*/changelog/**'
 
       - name: Debug, echo some data
+        # if: ${{ steps.filter.outputs.changelog == 'true' }}
         run: |
           echo "any Files: ${{ steps.filter.outputs.any_files }}"
           echo "changelog Files: ${{ steps.filter.outputs.changelog_files }}"
