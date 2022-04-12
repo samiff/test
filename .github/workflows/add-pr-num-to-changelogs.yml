@@ -25,3 +25,5 @@ jobs:
         run: |
           echo "Found changelog files: ${{ steps.filter.outputs.changelog_files }}"
           echo "github.event.number: ${{ github.event.number }}"
+          echo "Listing files:"
+          ls -al
