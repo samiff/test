@@ -15,13 +15,19 @@ jobs:
 
       - uses: dorny/paths-filter@v2
         id: changed-files
+        with:
+          filters: |
+            any:
+              - '*'
   
   add-pr-num:
     name: Add PR number to changelogs
     runs-on: ubuntu-latest
     steps:
       
-      - name: Debug, echo event data
+      - name: Debug, echo some data
         run: |
-          echo "github event: "
-          echo "${{ toJson( github.event ) }}"
+          echo "changed:"
+          echo ${{ steps.changed-files.outputs.changes }}
+          echo "github.event.number: ${{ github.event.number }}"
+          echo ""
