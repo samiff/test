@@ -17,7 +17,7 @@ jobs:
           list-files: shell
           filters: |
             any:
-              - added|modified: '*'
+              - added|modified: '**'
 
   add-pr-num:
     name: Add PR number to changelogs
