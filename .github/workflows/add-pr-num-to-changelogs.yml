@@ -24,6 +24,6 @@ jobs:
         # if: ${{ steps.filter.outputs.changelog == 'true' }}
         run: |
           echo "::group::Found changelog files"
-          echo "${{ steps.filter.outputs.changelog_files }} | tr ' ' '\n'"
+          echo "${{ steps.filter.outputs.changelog_files }}" | tr ' ' '\n'
           echo "::endgroup::"
           echo "github.event.number: ${{ github.event.number }}"
