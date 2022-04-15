@@ -30,6 +30,7 @@ jobs:
           echo "::group::Found added or modified changelog files"
           echo "${{ steps.filter.outputs.changelog_files }}" | tr ' ' '\n'
           echo "${{ steps.filter.outputs.changelog_files }}" | xargs -n 1 .github/scripts/add-pr-num.py $PR_NUM
+          git status
           echo "::endgroup::"
           echo "github.event.number: $PR_NUM"
           echo "Python version: $( python3 --version )"
