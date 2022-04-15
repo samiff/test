@@ -20,9 +20,10 @@ jobs:
             changelog:
               - added|modified: 'projects/*/*/changelog/!(.gitkeep)'
 
+      - uses: actions/checkout@v3
+
       - name: Debug, echo some data
         if: ${{ steps.filter.outputs.changelog == 'true' }}
-        uses: actions/checkout@v3
         env:
           PR_NUM: ${{ github.event.number }}
         run: |
