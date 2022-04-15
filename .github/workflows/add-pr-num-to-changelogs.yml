@@ -21,16 +21,21 @@ jobs:
               - added|modified: 'projects/*/*/changelog/!(.gitkeep)'
 
       - uses: actions/checkout@v3
+      # Todo: ./.github/actions/tool-setup ?
 
-      - name: Debug, echo some data
+      - name: Write PR number to changelogs
         if: ${{ steps.filter.outputs.changelog == 'true' }}
         env:
           PR_NUM: ${{ github.event.number }}
         run: |
           echo "::group::Found added or modified changelog files"
           echo "${{ steps.filter.outputs.changelog_files }}" | tr ' ' '\n'
-          echo "${{ steps.filter.outputs.changelog_files }}" | xargs -n 1 .github/scripts/add-pr-num.py $PR_NUM
-          git status
           echo "::endgroup::"
-          echo "github.event.number: $PR_NUM"
+          echo "${{ steps.filter.outputs.changelog_files }}" | xargs -n 1 .github/scripts/add-pr-num-to-changelog.py $PR_NUM
+          git status
+          echo "todo: commit if changed files at this point"
+
+      - name: Debug, echo some data
+        run: |
+          echo "github.event.number: ${{ github.event.number }}"
           echo "Python version: $( python3 --version )"
