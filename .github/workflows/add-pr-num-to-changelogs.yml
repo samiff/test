@@ -21,10 +21,11 @@ jobs:
               - added|modified: 'projects/*/*/changelog/!(.gitkeep)'
 
       - uses: actions/checkout@v3
-      # Todo: ./.github/actions/tool-setup ?
+      # Todo: ./.github/actions/tool-setup ? Translate py script to php/node?
 
       - name: Write PR number to changelogs
         if: ${{ steps.filter.outputs.changelog == 'true' }}
+        id: write
         env:
           PR_NUM: ${{ github.event.number }}
         run: |
@@ -32,8 +33,12 @@ jobs:
           echo "${{ steps.filter.outputs.changelog_files }}" | tr ' ' '\n'
           echo "::endgroup::"
           echo "${{ steps.filter.outputs.changelog_files }}" | xargs -n 1 .github/scripts/add-pr-num-to-changelog.py $PR_NUM
-          git status
-          echo "todo: commit if changed files at this point"
+          echo "::set-output name=MODIFIED::$( if [ -n "$( git status --porcelain )" ]; then echo "true"; else echo "false"; fi )"
+
+      - name: Commit modified changelog files
+        if: steps.write.outputs.MODIFIED == 'true'
+        run: |
+          echo "Todo the committing stuff here..."
 
       - name: Debug, echo some data
         run: |
