@@ -3,6 +3,8 @@
 import sys
 
 if len( sys.argv ) < 3:
+    # argv[1] - Should be PR number.
+    # argv[2] - Should be the file being read/modified.
     print( f'Invalid arguments length passed to: { __file__ }' )
     sys.exit( 1 )
 
@@ -21,12 +23,9 @@ with open( sys.argv[2], 'r+' ) as file:
                 file_contents = file_contents[i::] # Trim the list.
                 file_contents = file_contents[::-1] # Un-reverse the list.
 
-                print( f'Todo, will write edited line: { edited_line }' )
-                break
-
                 file.seek( 0 )
                 file.writelines( file_contents )
                 file.truncate()
                 break
             else:
-                break # Line already contains '[PR:'.
+                break # Line already contains '[PR:' string.
