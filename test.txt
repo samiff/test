@@ -1,6 +1,6 @@
 L1: line one. more content.
 L2: line two;
-L3: line three
+L3: line three.
 
 L5: line five, newline above and below.
 
