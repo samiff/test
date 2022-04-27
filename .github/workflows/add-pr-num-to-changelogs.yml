@@ -29,7 +29,7 @@ jobs:
         env:
           PR_NUM: ${{ github.event.number }}
         run: |
-          echo "::group::Found added or modified changelog files"
+          echo "::group::Found added or modified changelog files in this PR:"
           echo "${{ steps.filter.outputs.changelog_files }}" | tr ' ' '\n'
           echo "::endgroup::"
           echo "${{ steps.filter.outputs.changelog_files }}" | xargs -n 1 .github/scripts/add-pr-num-to-changelog.php $PR_NUM
