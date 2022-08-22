@@ -1,0 +1,22 @@
+name: Test Tag Push Filter Formatting
+
+# See: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#filter-pattern-cheat-sheet
+
+on:
+  push:
+    tags:
+      - 'v?[0-9]+.[0-9]+'
+      - 'v?[0-9]+.[0-9]+-[a-z0-9._-]+'
+      - 'v?[0-9]+.[0-9]+.[0-9]+'
+      - 'v?[0-9]+.[0-9]+.[0-9]+-[a-z0-9._-]+'
+      - 'v?[0-9]+.[0-9]+.[0-9]+.[0-9]+'
+      - 'v?[0-9]+.[0-9]+.[0-9]+.[0-9]+-[a-z0-9._-]+'
+
+jobs:
+  
+  debug-output:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo out event
+        run: |
+          echo "github.event : ${{ github.event.number }}"
