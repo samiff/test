@@ -93,6 +93,7 @@ echo "$TC_UPDATEJETPACKSTAGING_SSH_KEY" > "$TMP_DIR/ssh_key"
 chmod 0600 "$TMP_DIR/ssh_key"
 
 # Sync new plugin files to the Atomic test sites.
+EXIT_CODE=0
 for key in $(echo "${SITES}" | jq -r 'keys[]'); do
   # Extract values for each site.
   ssh_string=$(echo "${SITES}" | jq -r --arg key "$key" '.[$key].ssh_string')
@@ -103,6 +104,7 @@ for key in $(echo "${SITES}" | jq -r 'keys[]'); do
     echo "Attempting to sync $PLUGIN files to $key | blog_id: $blog_id"
     if ! rsync -az --quiet --delete -e "ssh -i $TMP_DIR/ssh_key" "$TMP_DIR/$PLUGIN-dev/" "$ssh_string:$REMOTE_DIR/$PLUGIN/"; then
       echo "Failed to sync $PLUGIN files to $key | blog_id: $blog_id"
+      EXIT_CODE=1
     else
       echo "Successfully synced $PLUGIN files to $key | blog_id: $blog_id"
     fi
@@ -116,3 +118,4 @@ done
 echo 'Cleaning up...'
 rm -rf "$TMP_DIR"
 echo "$(basename $0) script finished."
+exit $EXIT_CODE
