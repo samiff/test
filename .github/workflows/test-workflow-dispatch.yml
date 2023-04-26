@@ -1,0 +1,17 @@
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
+# https://docs.github.com/en/rest/actions/workflows?apiVersion=2022-11-28#create-a-workflow-dispatch-event
+
+name: Test Workflow
+
+on:
+  workflow_dispatch:
+    
+jobs:
+  run-shell-script:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Execute script
+        shell: bash
+        run: ./.github/scripts/test-script.sh
