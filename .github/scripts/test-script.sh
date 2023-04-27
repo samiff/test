@@ -12,13 +12,6 @@ PLUGINS=( "jetpack" "jetpack-mu-wpcom-plugin" ); # Plugins to update.
 declare -A PLUGIN_VERSIONS # Array used to hold fetched plugin versions.
 declare -A PLUGIN_DOWNLOAD_URLS # Array used to hold fetched plugin download URLs.
 
-# Atomic test sites where the typical root symlink for Jetpack has been removed, enabling writing of new versions.
-# On these sites, '/srv/htdocs/wp-content/plugins/jetpack' symlink points to '/srv/htdocs/jetpack-staging',
-# and 'plugins/jetpack-platform' is the Atomic platform copy of the plugin.
-#
-# WPcom account 'jetpackisbestpack': https://mc.a8c.com/secret-store/?secret_id=10538
-# SSH uses the 'TC_UPDATEJETPACKSTAGING_SSH_KEY' secret, added as an env var to TeamCity,
-# see: https://wordpress.com/support/connect-to-ssh-on-wordpress-com/#ssh-key
 SITES='{
   "jetpackedge.wpcomstaging.com": {
     "url": "https://jetpackedge.wpcomstaging.com/",
@@ -31,9 +24,38 @@ SITES='{
     "note": "php 7.4",
     "ssh_string": "jetpackedgephp74.wordpress.com@sftp.wp.com",
     "blog_id": "215379848"
-  }
+  },
+  "jetpackedgephp82.wpcomstaging.com": {
+    "url": "https://jetpackedgephp82.wpcomstaging.com/",
+    "note": "php 8.2",
+    "ssh_string": "jetpackedgephp82.wordpress.com@sftp.wp.com",
+    "blog_id": "215380000"
+  },
+  "jetpackedgeecomm.wpcomstaging.com": {
+    "url": "https://jetpackedgeecomm.wpcomstaging.com/",
+    "note": "ecommerce plan",
+    "ssh_string": "jetpackedgeecomm.wordpress.com@sftp.wp.com",
+    "blog_id": "215380391"
+  },
+  "jetpackedgeprivate.wpcomstaging.com": {
+    "url": "https://jetpackedgeprivate.wpcomstaging.com/",
+    "note": "private site",
+    "ssh_string": "jetpackedgeprivate.wordpress.com@sftp.wp.com",
+    "blog_id": "215380534"
+  },
+  "jetpackedgewpbeta.wpcomstaging.com": {
+    "url": "https://jetpackedgewpbeta.wpcomstaging.com/",
+    "note": "latest wp beta",
+    "ssh_string": "jetpackedgewpbeta.wordpress.com@sftp.wp.com",
+    "blog_id": "215380197"
+  },
+  "jetpackedgewpprevious.wpcomstaging.com": {
+    "url": "https://jetpackedgewpprevious.wpcomstaging.com/",
+    "note": "previous wp version",
+    "ssh_string": "jetpackedgewpprevious.wordpress.com@sftp.wp.com",
+    "blog_id": "215380213"
+  },
 }'
-# Todo: add the other sites to $SITES
 
 ####################################################
 ## Fetch plugin data from the Jetpack Beta Builder.
