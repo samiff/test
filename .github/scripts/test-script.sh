@@ -54,7 +54,7 @@ SITES='{
     "note": "previous wp version",
     "ssh_string": "jetpackedgewpprevious.wordpress.com@sftp.wp.com",
     "blog_id": "215380213"
-  },
+  }
 }'
 
 ####################################################
