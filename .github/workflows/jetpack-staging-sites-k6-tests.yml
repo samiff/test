@@ -8,7 +8,9 @@ on:
 jobs:
   run_tests:
     runs-on: ubuntu-latest
-    container: docker://loadimpact/k6:latest
+    container:
+      image: docker://loadimpact/k6:latest
+      options: --user root
     env:
       JETPACKSTAGING_K6_USERNAME: ${{ secrets.JETPACKSTAGING_K6_USERNAME }}
       JETPACKSTAGING_K6_PASSWORD: ${{ secrets.JETPACKSTAGING_K6_PASSWORD }}
