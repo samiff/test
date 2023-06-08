@@ -27,6 +27,7 @@ export default function () {
 	sites.forEach( site => {
 		// Homepage.
 		let res = http.get( site.url );
+        console.log( `SITE: ${site.url} | STATUS: ${res.status}` );
 		check( res, {
 			'status was 200': r => r.status == 200,
 		} );
