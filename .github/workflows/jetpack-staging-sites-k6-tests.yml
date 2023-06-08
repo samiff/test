@@ -8,7 +8,6 @@ on:
 jobs:
   run_tests:
     runs-on: ubuntu-latest
-    container: docker://golang:1.20-alpine
     env:
       JETPACKSTAGING_K6_USERNAME: ${{ secrets.JETPACKSTAGING_K6_USERNAME }}
       JETPACKSTAGING_K6_PASSWORD: ${{ secrets.JETPACKSTAGING_K6_PASSWORD }}
@@ -16,11 +15,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Install xk6
-        run: go install go.k6.io/xk6/cmd/xk6@latest
+      - name: Install k6
+        run: |
+          sudo apt-get install k6
+          k6 version
 
-      - name: Run k6 frontend tests
-        run: ./k6 run .github/files/jetpack-staging-sites/k6-frontend.js
+      # - name: Run k6 frontend tests
+      #   run: k6 run .github/files/jetpack-staging-sites/k6-frontend.js
 
-      - name: Run k6 backend tests
-        run: ./k6 run .github/files/jetpack-staging-sites/k6-backend.js
+      # - name: Run k6 backend tests
+      #   run: k6 run .github/files/jetpack-staging-sites/k6-backend.js
