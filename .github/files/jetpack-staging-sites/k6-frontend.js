@@ -5,7 +5,6 @@ import { sites } from './k6-shared.js';
 
 export const options = {
 	vus: 3,
-	// duration: '10s',
     iterations: 3,
 	thresholds: {
 		checks: [
@@ -27,7 +26,6 @@ export default function () {
 	sites.forEach( site => {
 		// Homepage.
 		let res = http.get( site.url );
-
 		check( res, {
 			'status was 200': r => r.status == 200,
 		} );
@@ -38,7 +36,12 @@ export default function () {
 			'status was 200': r => r.status == 200,
 		} );
 
-		// Todo: Kitchen sink post (Jetpack blocks)
+		// Jetpack Blocks test post.
+        res = http.get( `${ site.url }/2023/06/09/jetpack-blocks/` );
+		check( res, {
+			'status was 200': r => r.status == 200,
+            'verify post end contents': r => r.body.includes( 'End of Jetpack Blocks post content' ),
+		} );
 	} );
 
 	sleep( 1 );
