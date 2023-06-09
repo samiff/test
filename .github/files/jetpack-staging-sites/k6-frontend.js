@@ -38,6 +38,7 @@ export default function () {
 
 		// Jetpack Blocks test post.
         res = http.get( `${ site.url }/2023/06/09/jetpack-blocks/` );
+        console.log( `${site.url} } | ${res.body.includes( 'End of Jetpack Blocks post content' )}` );
 		check( res, {
 			'status was 200': r => r.status == 200,
             'verify post end contents': r => r.body.includes( 'End of Jetpack Blocks post content' ),
