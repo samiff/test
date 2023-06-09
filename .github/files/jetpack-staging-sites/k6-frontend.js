@@ -4,9 +4,9 @@ import http from 'k6/http';
 import { sites } from './k6-shared.js';
 
 export const options = {
-	vus: 1, // Todo: adjust values.
-	// duration: '5s',
-	iterations: 1,
+	vus: 3,
+	// duration: '10s',
+    iterations: 3,
 	thresholds: {
 		checks: [
 			{
@@ -27,7 +27,7 @@ export default function () {
 	sites.forEach( site => {
 		// Homepage.
 		let res = http.get( site.url );
-        console.log( `SITE: ${site.url} | STATUS: ${res.status}` );
+
 		check( res, {
 			'status was 200': r => r.status == 200,
 		} );
