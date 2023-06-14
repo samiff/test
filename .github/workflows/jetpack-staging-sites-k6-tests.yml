@@ -34,13 +34,13 @@ jobs:
           payload: |
             {
               icon_emoji: ":github-rejected:",
-              "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "text": "Failure for workflow ${{ github.workflow }}: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
               "blocks": [
                 {
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
-                    "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    "text": "Failure for workflow ${{ github.workflow }}: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
                   }
                 }
               ]
