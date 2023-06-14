@@ -35,4 +35,4 @@ jobs:
         # env:
         #   SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
         run: |
-          echo "Event Payload: ${{ toJson(github.event) }}"
+          echo "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
