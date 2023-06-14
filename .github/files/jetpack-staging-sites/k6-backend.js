@@ -23,6 +23,15 @@ export const options = {
  * Default test function.
  */
 export default function () {
+	/** Quick testing for Slack alert */
+	const res = http.get('https://jetpack.com');
+	check(res, {
+		'Status is 200': (r) => r.status == 200,
+	});
+	sleep( 1 );;
+	return;
+
+
 	const params = {
 		headers: {
 			Authorization: `Basic ${ encodedCredentials }`,

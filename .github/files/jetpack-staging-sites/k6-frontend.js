@@ -10,10 +10,10 @@ export const options = {
 		checks: [
 			{
 				/**
-				 * Successful checks should exceed 98%.
+				 * Fail if the number of failed checks is greater than 0.
 				 * see: https://k6.io/docs/using-k6/thresholds/#fail-a-load-test-using-checks
 				 */
-				threshold: 'rate > 0.98',
+				threshold: 'rate == 1.0',
 			},
 		],
 	},
@@ -23,6 +23,14 @@ export const options = {
  * Default test function.
  */
 export default function () {
+	/** Quick testing for Slack alert */
+	const res = http.get('https://jetpack.com');
+	check(res, {
+		'Status is 500': (r) => r.status == 500,
+	});
+	sleep( 1 );;
+	return;
+
 	sites.forEach( site => {
 		// Homepage.
 		let res = http.get( site.url );
