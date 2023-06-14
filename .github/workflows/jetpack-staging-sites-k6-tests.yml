@@ -35,5 +35,4 @@ jobs:
         # env:
         #   SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
         run: |
-          echo "Workflow Name: ${{ github.workflow.name }}"
-          echo "Workflow Run URL: ${{ github.event.workflow_run.html_url }}"
+          echo "Event Payload: ${{ toJson(github.event) }}"
