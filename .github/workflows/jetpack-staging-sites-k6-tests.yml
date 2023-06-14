@@ -33,10 +33,10 @@ jobs:
           channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
           payload: |
             {
+              icon_emoji: ":github-rejected:",
               "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
               "blocks": [
                 {
-                  icon_emoji: ":github-rejected:",
                   "type": "section",
                   "text": {
                     "type": "mrkdwn",
