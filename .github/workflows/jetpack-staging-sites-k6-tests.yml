@@ -31,6 +31,6 @@ jobs:
         if: ${{ failure() }}
         with:
           channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
-          payload: "Failure for workflow `${{ github.workflow.name }}`: ${{ github.event.workflow_run.html_url }}"
+          slack-message: "Failure for workflow `${{ github.workflow.name }}`: ${{ github.event.workflow_run.html_url }}"
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
