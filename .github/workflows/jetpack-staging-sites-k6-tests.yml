@@ -27,12 +27,23 @@ jobs:
           filename: .github/files/jetpack-staging-sites/k6-backend.js
 
       - name: Send Slack alert on failure
-        # uses: slackapi/slack-github-action@v1.23.0
+        uses: slackapi/slack-github-action@v1.23.0
         if: ${{ failure() }}
-        # with:
-        #   channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
-        #   slack-message: "Failure for workflow ${{ github.workflow.name }}: ${{ github.event.workflow_run.html_url }}"
-        # env:
-        #   SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
-        run: |
-          echo "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        with:
+          channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
+          payload: |
+            {
+              "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+              "blocks": [
+                {
+                  icon_emoji: ":github-rejected:",
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
