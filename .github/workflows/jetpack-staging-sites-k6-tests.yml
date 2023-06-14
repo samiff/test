@@ -28,7 +28,7 @@ jobs:
 
       - name: Send Slack alert on failure
         # uses: slackapi/slack-github-action@v1.23.0
-        # if: ${{ failure() }}
+        if: ${{ failure() }}
         # with:
         #   channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
         #   slack-message: "Failure for workflow ${{ github.workflow.name }}: ${{ github.event.workflow_run.html_url }}"
