@@ -26,24 +26,24 @@ jobs:
         with:
           filename: .github/files/jetpack-staging-sites/k6-backend.js
 
-      - name: Send Slack alert on failure
-        uses: slackapi/slack-github-action@v1.23.0
-        if: ${{ failure() }}
-        with:
-          channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
-          payload: |
-            {
-              "icon_emoji": ":github-rejected:",
-              "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-              "blocks": [
-                {
-                  "type": "section",
-                  "text": {
-                    "type": "mrkdwn",
-                    "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
-                  }
-                }
-              ]
-            }
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      # - name: Send Slack alert on failure
+      #   uses: slackapi/slack-github-action@v1.23.0
+      #   if: ${{ failure() }}
+      #   with:
+      #     channel-id: ${{ secrets.SLACK_JP_ALERTS_CHANNEL }}
+      #     payload: |
+      #       {
+      #         "icon_emoji": ":github-rejected:",
+      #         "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
+      #         "blocks": [
+      #           {
+      #             "type": "section",
+      #             "text": {
+      #               "type": "mrkdwn",
+      #               "text": "Failure for workflow `${{ github.workflow }}`: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      #             }
+      #           }
+      #         ]
+      #       }
+      #   env:
+      #     SLACK_BOT_TOKEN: ${{ secrets.SLACK_TOKEN }}
